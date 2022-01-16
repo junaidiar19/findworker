@@ -3,11 +3,16 @@
 
 @push('before-style')
 <link href="{{ asset('vendor/dropify/css/dropify.min.css') }}" rel="stylesheet">
+<link href="{{ asset('vendor/bootstrap-tokenfield/bootstrap-tokenfield.min.css') }}" rel="stylesheet">
 @endpush
 
 @push('after-script')
 <script src="{{ asset('vendor/dropify/js/dropify.min.js') }}"></script>
 <script src="{{ asset('vendor/dropify/js/upload-init.js') }}"></script>
+<script src="{{ asset('vendor/bootstrap-tokenfield/bootstrap-tokenfield.min.js') }}"></script>
+<script>
+    $('#tokenfield').tokenfield()
+</script>
 @endpush
 
 <div class="container">

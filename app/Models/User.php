@@ -46,14 +46,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getGetAvatarAttribute()
+    {
+        $url = $this->avatar;
+        return (filter_var($url, FILTER_VALIDATE_URL)) ? $url : asset("storage/" . $url);
+    }
+
     public function worker()
     {
         return $this->hasOne(Worker::class);
     }
 
-    public function getGetAvatarAttribute()
+    public function available()
     {
-        $url = $this->avatar;
-        return (filter_var($url, FILTER_VALIDATE_URL)) ? $url : asset("storage/" . $url);
+        return $this->belongsToMany(Availability::class);
     }
 }

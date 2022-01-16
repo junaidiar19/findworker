@@ -80,6 +80,28 @@ class ProfileSetupController extends Controller
         return view('user.profile.setup.worker_additional', compact('experiences', 'availabilities', 'services'));
     }
 
+    public function store_additional(Request $request)
+    {
+        $attr = request()->except(['_token', 'available']);
+
+        $request->validate([
+            'experience' => 'required',
+            'skills' => 'required',
+        ]);
+
+        $user = auth()->user();
+
+        // dd($attr);
+        $user->worker()->update($attr);
+        $user->available()->attach($request->available);
+        return redirect()->route('user.setup.worker.finish');
+    }
+
+    public function setup_worker_finish()
+    {
+        return view('user.profile.setup.worker_finish');
+    }
+
     public function setup_recruiter()
     {
         return view('user.profile.setup.recruiter');

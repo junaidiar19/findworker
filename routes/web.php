@@ -41,6 +41,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'profile'], function() {
 
     // Setup Action
     Route::post('/setup/worker', [ProfileSetupController::class, 'store_profile']);
+    Route::post('/setup/worker/additional', [ProfileSetupController::class, 'store_additional']);
 });
 
 Route::group(['middleware' => 'role:user', 'prefix' => 'dashboard'], function() {

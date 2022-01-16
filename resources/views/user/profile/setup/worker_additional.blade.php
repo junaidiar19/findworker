@@ -9,21 +9,49 @@
     </style>
 @endpush
 
+@push('after-script')
+<script>
+    function experienceClick(name) {
+        let input = $("#experience-input");
+        let btn = $("#exp-button-" + name);
+
+        if(name !== input.val()) {
+            let old = $("#exp-button-" + input.val());
+            old.removeClass('btn-orange');
+            old.addClass('btn-outline-orange');
+        }
+
+        btn.removeClass('btn-outline-orange');
+        btn.addClass('btn-orange');
+        input.val(name);
+    }
+</script>
+@endpush
+
 <br>
 
-<form action="" method="POST">
+<form action="" method="POST" onsubmit="submitForm()">
 @csrf
 
     <div class="mb-5">
         <p class="line-between fw-semibold mb-5">Experience</p>
+
+        @error('experience')
+        <div class="alert alert-danger py-2 text-sm">
+            <i class="bi bi-info-circle"></i>
+            {{ $message }}
+        </div>
+        @enderror
+
         <div class="row">
             @foreach ($experiences as $e)
             <div class="col-3 d-grid">
-                <a href="" class="btn btn-outline-orange">{{ $e->name }}</a>
+                <div onclick="experienceClick('{{ $e->name }}')" id="exp-button-{{ $e->name }}" class="btn btn-outline-orange pointer-event">{{ $e->name }}</div>
             </div>
             @endforeach
         </div>
     </div>
+    <input type="hidden" id="experience-input" name="experience">
 
     <div class="mb-4">
         <p class="line-between fw-semibold mb-5">Available to</p>
@@ -32,7 +60,7 @@
                 <table class="table text-sm">
                 @foreach ($availabilities as $e)
                 <tr>
-                    <td><input type="checkbox" name="available[]" class="me-3 checkbox" id="available-{{ $e->id }}"></td>
+                    <td><input type="checkbox" name="available[]" class="me-3 checkbox" id="available-{{ $e->id }}" value="{{ $e->id }}"></td>
                     <td><label class="me-4" for="available-{{ $e->id }}">{{ $e->name }}</label></td>
                     <td class="text-muted">{{ $e->description }}</td>
                 </tr>
@@ -44,7 +72,12 @@
 
     <div class="mb-5">
         <p class="line-between fw-semibold mb-5">Skills and Expertise</p>
-        <input type="text" class="form-control" name="skills[]" placeholder="Ex. React, Laravel, PHP, Java">
+        <input type="text" class="form-control @error('skills') is-invalid @enderror" id="tokenfield" name="skills" placeholder="Ex. React, Laravel, PHP, Java" required>
+        @error('skills')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+        @enderror
     </div>
 
     <div class="mb-4">
@@ -88,5 +121,8 @@
 
 </form>
 
+@push('after-script')
+    @include('partials.processing')
+@endpush
 
 @endsection

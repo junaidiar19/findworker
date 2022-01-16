@@ -10,4 +10,9 @@ class Availability extends Model
     use HasFactory;
     protected $guarded = [];
     public $timestamps = false;
+
+    public function user()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

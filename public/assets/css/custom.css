@@ -116,7 +116,7 @@
 label {
   font-size: small;
   font-weight: 500;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 }
 
 .form-control {
@@ -132,7 +132,7 @@ label {
 }
 
 .form-group {
-  margin-bottom: 12px;
+  margin-bottom: 1rem;
 }
 
 .line-between {
@@ -164,4 +164,19 @@ label {
 .checkbox {
   height: 20px;
   width: 20px;
+}
+
+.tokenfield.focus {
+  border-color: #fd9670 !important;
+  box-shadow: none;
+}
+
+.tokenfield .token-input {
+  margin-bottom: 0;
+}
+
+.tokenfield .token {
+  margin: -1px 10px 8px 0;
+  border: 1px solid var(--orange);
+  background-color: var(--orange-light-2);
 }
