@@ -56,9 +56,4 @@ class User extends Authenticatable
     {
         return $this->hasOne(Worker::class);
     }
-
-    public function available()
-    {
-        return $this->belongsToMany(Availability::class);
-    }
 }

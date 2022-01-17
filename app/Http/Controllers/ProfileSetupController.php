@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kota;
+use App\Models\Worker;
 use App\Models\Service;
 use App\Models\Provinsi;
 use App\Models\Experience;
 use App\Models\Availability;
-use App\Models\Worker;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProfileSetupController extends Controller
 {
@@ -19,8 +21,16 @@ class ProfileSetupController extends Controller
 
     public function setup_worker()
     {
-        $provinsi = Provinsi::all();
-        return view('user.profile.setup.worker_profile', compact('provinsi'));
+        $var['provinsi'] = Provinsi::all();
+
+        if(auth()->user()->worker) {
+            $user_provinsi = auth()->user()->worker->provinsi_id;
+            if ($user_provinsi) {
+                $var['kota'] = Kota::whereProvinsiId($user_provinsi)->get();
+            }
+        }
+
+        return view('user.profile.setup.worker_profile', $var);
     }
 
     public function store_profile(Request $request)
@@ -38,6 +48,7 @@ class ProfileSetupController extends Controller
         $user = [
             'username' => $request->username,
             'name' => $request->name,
+            'role' => 'worker'
         ];
 
         $worker = [
@@ -73,16 +84,23 @@ class ProfileSetupController extends Controller
 
     public function setup_worker_additional()
     {
+        if(!auth()->user()->worker) {
+            return abort(404);
+        }
         $experiences = Experience::all();
         $availabilities = Availability::all();
         $services = Service::all();
 
-        return view('user.profile.setup.worker_additional', compact('experiences', 'availabilities', 'services'));
+        $worker = auth()->user()->worker;
+        $aval = $worker->availability->pluck('id');
+
+        return view('user.profile.setup.worker_additional', compact('experiences', 'availabilities', 'services', 'aval'));
     }
 
     public function store_additional(Request $request)
     {
         $attr = request()->except(['_token', 'available']);
+        $attr['status'] = 'Pending';
 
         $request->validate([
             'experience' => 'required',
@@ -93,13 +111,8 @@ class ProfileSetupController extends Controller
 
         // dd($attr);
         $user->worker()->update($attr);
-        $user->available()->attach($request->available);
-        return redirect()->route('user.setup.worker.finish');
-    }
-
-    public function setup_worker_finish()
-    {
-        return view('user.profile.setup.worker_finish');
+        $user->worker->availability()->sync($request->available);
+        return redirect()->route('worker.dashboard');
     }
 
     public function setup_recruiter()

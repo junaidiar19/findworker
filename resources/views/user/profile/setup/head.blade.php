@@ -33,9 +33,6 @@
                         <li class="nav-item" role="presentation">
                             <div class="nav-link text-sm me-3 {{ (request()->routeIs('user.setup.worker.additional')) ? 'active' : '' }}"><i class="bi bi-folder-plus me-1"></i> Additional Information</div>
                         </li>
-                        <li class="nav-item" role="presentation">
-                            <div class="nav-link text-sm {{ (request()->routeIs('user.setup.worker.finish')) ? 'active' : '' }}"><i class="bi bi-check-circle me-1"></i> Finish</div>
-                        </li>
                     </ul>
 
                     @yield('subcontent')

@@ -40,7 +40,7 @@
                     </a>
                     <ul class="dropdown-menu border-0">
                         @if (auth()->user()->role)
-                        <li><a href="{{ route('user.dashboard') }}">Dashboard</a></li>
+                        <li><a href="{{ route(auth()->user()->role . '.dashboard') }}">Dashboard</a></li>
                         @else
                         <li><a href="{{ route('user.setup') }}">Profile Setup</a></li>
                         @endif

@@ -11,8 +11,8 @@ class Availability extends Model
     protected $guarded = [];
     public $timestamps = false;
 
-    public function user()
+    public function worker()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(Worker::class);
     }
 }

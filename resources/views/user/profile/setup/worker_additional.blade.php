@@ -26,6 +26,11 @@
         input.val(name);
     }
 </script>
+@if ($worker->experience)
+<script>
+    $("#exp-button-{{ $worker->experience }}").addClass('btn-orange').removeClass('btn-outline-orange');
+</script>
+@endif
 @endpush
 
 <br>
@@ -51,7 +56,7 @@
             @endforeach
         </div>
     </div>
-    <input type="hidden" id="experience-input" name="experience">
+    <input type="hidden" id="experience-input" value="{{ $worker->experience }}" name="experience">
 
     <div class="mb-4">
         <p class="line-between fw-semibold mb-5">Available to</p>
@@ -59,8 +64,22 @@
             <div class="col-md-9">
                 <table class="table text-sm">
                 @foreach ($availabilities as $e)
+                @php
+                    $checked = '';
+                    foreach($aval as $i) {
+                        if($i == $e->id) {
+                            $checked = 'checked';
+                        }
+                    }
+                @endphp
                 <tr>
-                    <td><input type="checkbox" name="available[]" class="me-3 checkbox" id="available-{{ $e->id }}" value="{{ $e->id }}"></td>
+                    <td><input type="checkbox" 
+                        name="available[]" 
+                        class="me-3 checkbox" 
+                        id="available-{{ $e->id }}"
+                        value="{{ $e->id }}"
+                        {{ $checked }}
+                    ></td>
                     <td><label class="me-4" for="available-{{ $e->id }}">{{ $e->name }}</label></td>
                     <td class="text-muted">{{ $e->description }}</td>
                 </tr>
@@ -72,7 +91,7 @@
 
     <div class="mb-5">
         <p class="line-between fw-semibold mb-5">Skills and Expertise</p>
-        <input type="text" class="form-control @error('skills') is-invalid @enderror" id="tokenfield" name="skills" placeholder="Ex. React, Laravel, PHP, Java" required>
+        <input type="text" class="form-control @error('skills') is-invalid @enderror" id="tokenfield" name="skills" value="{{ $worker->skills }}" placeholder="Ex. React, Laravel, PHP, Java" required>
         @error('skills')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -87,28 +106,28 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for=""><i class="bi bi-linkedin me-1"></i>Linkedin</label>
-                    <input type="text" class="form-control" name="linkedin" placeholder="Ex. Username">
+                    <input type="text" class="form-control" name="linkedin" value="{{ $worker->linkedin }}" placeholder="Ex. Username">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for=""><i class="bi bi-twitter me-1"></i>Twitter</label>
-                    <input type="text" class="form-control" name="twitter" placeholder="Ex. Username">
+                    <input type="text" class="form-control" name="twitter" value="{{ $worker->twitter }}" placeholder="Ex. Username">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for=""><i class="bi bi-instagram me-1"></i>Instagram</label>
-                    <input type="text" class="form-control" name="instagram" placeholder="Ex. Username">
+                    <input type="text" class="form-control" name="instagram" value="{{ $worker->instagram }}" placeholder="Ex. Username">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for=""><i class="bi bi-facebook me-1"></i>Facebook</label>
-                    <input type="text" class="form-control" name="facebook" placeholder="Ex. Username">
+                    <input type="text" class="form-control" name="facebook" value="{{ $worker->facebook }}" placeholder="Ex. Username">
                 </div>
             </div>
 

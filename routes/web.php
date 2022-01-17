@@ -6,6 +6,7 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ProfileSetupController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
+use App\Http\Controllers\Worker\DashboardController as WorkerDashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,12 +32,14 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 // Cek Kota
 Route::get('/city-check', [RequestController::class, 'city'])->name('city-check');
 
-
 Route::group(['middleware' => 'auth', 'prefix' => 'profile'], function() {
     Route::get('/setup', [ProfileSetupController::class, 'setup'])->name('user.setup');
-    Route::get('/setup/worker', [ProfileSetupController::class, 'setup_worker'])->name('user.setup.worker');
-    Route::get('/setup/worker/additional', [ProfileSetupController::class, 'setup_worker_additional'])->name('user.setup.worker.additional');
-    Route::get('/setup/worker/finish', [ProfileSetupController::class, 'setup_worker_finish'])->name('user.setup.worker.finish');
+
+    Route::middleware(['worker.variable'])->group(function () {
+        Route::get('/setup/worker', [ProfileSetupController::class, 'setup_worker'])->name('user.setup.worker');
+        Route::get('/setup/worker/additional', [ProfileSetupController::class, 'setup_worker_additional'])->name('user.setup.worker.additional');
+    });
+    
     Route::get('/setup/recruiter', [ProfileSetupController::class, 'setup_recruiter'])->name('user.setup.recruiter');
 
     // Setup Action
@@ -44,6 +47,10 @@ Route::group(['middleware' => 'auth', 'prefix' => 'profile'], function() {
     Route::post('/setup/worker/additional', [ProfileSetupController::class, 'store_additional']);
 });
 
-Route::group(['middleware' => 'role:user', 'prefix' => 'dashboard'], function() {
-    Route::get('/', [UserDashboardController::class, 'index'])->name('user.dashboard');
+Route::group(['middleware' => 'role:worker', 'prefix' => 'worker', 'middleware' => 'worker.variable'], function() {
+    Route::get('/dashboard', [WorkerDashboardController::class, 'index'])->name('worker.dashboard');
 });
+
+Auth::routes(['register' => false, 'password_reset' => false]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

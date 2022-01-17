@@ -17,7 +17,7 @@
     <div class="col-md-7">
         <div class="form-group">
             <label for="">Username <span>*</span></label>
-            <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" placeholder="Ex. johndoe" required>
+            <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username', auth()->user()->username) }}" placeholder="Ex. johndoe" required>
             @error('username')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -37,7 +37,7 @@
 
         <div class="form-group">
             <label for="">Anda adalah seorang? <span>*</span></label>
-            <input type="text" class="form-control @error('expertise') is-invalid @enderror" name="expertise" value="{{ old('expertise') }}" placeholder="Ex. Web Developer" required>
+            <input type="text" class="form-control @error('expertise') is-invalid @enderror" name="expertise" value="{{ old('expertise', @$worker->expertise) }}" placeholder="Ex. Web Developer" required>
             @error('expertise')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -52,7 +52,7 @@
 
         <div class="form-group">
             <label for="">No. Hp <span>*</span></label>
-            <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" placeholder="Ex. 08xxxx" required>
+            <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone', @$worker->phone) }}" placeholder="Ex. 08xxxx" required>
             @error('phone')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -62,7 +62,7 @@
 
         <div class="form-group">
             <label for="">Link Portofolio <sup class="text-sm text-muted fw-normal">(opsional)</sup></label>
-            <input type="text" class="form-control" name="portofolio_link" value="{{ old('portofolio_link') }}">
+            <input type="text" class="form-control" name="portofolio_link" value="{{ old('portofolio_link', @$worker->portofolio_link) }}">
         </div>
 
         <div class="form-group">
@@ -70,7 +70,7 @@
             <select class="form-control" name="provinsi" onchange="cityCheck(this.value)" required>
                 <option value="">-Silakan Pilih-</option>
                 @foreach ($provinsi as $e)
-                    <option value="{{ $e->id }}">{{ $e->name }}</option>
+                    <option value="{{ $e->id }}" {{ (old('provinsi', @$worker->provinsi_id) == $e->id) ? 'selected' : '' }}>{{ $e->name }}</option>
                 @endforeach
             </select>
             @error('provinsi')
@@ -84,6 +84,11 @@
             <label for="">Kota <span>*</span></label>
             <select class="form-control" name="kota" id="city-option" required>
                 <option value="">-Silakan Pilih-</option>
+                @if (@$kota)
+                @foreach ($kota as $e)
+                    <option value="{{ $e->id }}" {{ (old('kota', @$worker->kota_id) == $e->id) ? 'selected' : '' }}>{{ $e->name }}</option>
+                @endforeach
+                @endif
             </select>
             @error('kota')
                 <div class="invalid-feedback">
@@ -94,7 +99,7 @@
 
         <div class="form-group">
             <label for="">Tulis sesuatu tentang diri Anda <span>*</span></label>
-            <textarea name="about" class="form-control" cols="30" rows="4"></textarea>
+            <textarea name="about" class="form-control" cols="30" rows="4">{{ @$worker->about }}</textarea>
             @error('kota')
                 <div class="invalid-feedback">
                     {{ $message }}
