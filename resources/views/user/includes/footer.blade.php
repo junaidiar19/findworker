@@ -53,7 +53,7 @@
         </div>
     </div>
 
-    <div class="container py-4">
+    <div class="container py-4 border-top">
         <div class="copyright">
             &copy; Copyright <strong><span>{{ env('APP_NAME') }}</span></strong>. All Rights Reserved
         </div>

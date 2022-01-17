@@ -1,6 +1,6 @@
 @extends('layouts.user')
 @section('content')
-<div class="container">
+<div class="container my-5">
     <div class="text-center">
         <h5>Ayo mulai sekarang!</h5>
         <p class="text-muted text-sm">Pilih peran kamu untuk melanjutkan</p>
@@ -12,7 +12,8 @@
             <p class="text-muted text-sm">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam dolores dolore accusamus, vel eius dolor molestiae odio, quisquam porro aliquid maiores a mollitia debitis magni. Recusandae officiis voluptatem amet voluptas.</p>
             <a href="{{ route('user.setup.worker') }}" class="btn btn-outline-orange fw-semibold text-sm">Lanjutkan Sebagai Worker</a>
         </div>
-        <div class="col-md-5 text-center offset-1">
+        <div class="col-md-1"></div>
+        <div class="col-md-5 text-center">
             <img src="{{ asset('img/vector/undraw_interview_re_e5jn.svg') }}" class="img-fluid mb-3" style="height: 140px" alt="">
             <h6>Recruiter</h6>
             <p class="text-muted text-sm">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam dolores dolore accusamus, vel eius dolor molestiae odio, quisquam porro aliquid maiores a mollitia debitis magni. Recusandae officiis voluptatem amet voluptas.</p>

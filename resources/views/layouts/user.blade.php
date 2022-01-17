@@ -17,9 +17,7 @@
 
 <body>
   @include('user.includes.header')
-  <div class="main">
-      @yield('content')
-  </div>
+  @yield('content')
 
   @include('user.includes.footer')
 

@@ -2,6 +2,11 @@
   --orange: #FC7341;
   --orange-light: #faf1ed;
   --orange-light-2: #fff3ef;
+  --bg-main: #F1F8FF;
+}
+
+.bg-main {
+  background-color: var(--bg-main);
 }
 
 .bg-orange {
@@ -38,8 +43,9 @@
 }
 
 .main {
-  margin-top: 120px;
-  margin-bottom: 60px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background-color: var(--bg-main);
 }
 
 .h-20 {

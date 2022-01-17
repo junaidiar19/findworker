@@ -1,6 +1,6 @@
 @extends('layouts.user')
 @section('content')
-<div class="container">
+<div class="container my-5">
     <div class="row">
         <div class="col-md-3 offset-1 d-md-block d-none">
             <h6>Let's get your profile ready for make offers.</h6>

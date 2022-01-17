@@ -1,5 +1,5 @@
 <!-- ======= Header ======= -->
-<nav class="navbar navbar-expand-lg navbar-light py-2 fixed-top bg-white border-bottom">
+<nav class="navbar navbar-expand-lg navbar-light py-2 bg-white border-bottom">
     <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}">
             <img src="{{ asset('img/logo.png') }}" alt="" class="img-fluid h-40 me-2">
