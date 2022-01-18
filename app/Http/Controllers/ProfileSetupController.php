@@ -16,6 +16,10 @@ class ProfileSetupController extends Controller
 {
     public function setup()
     {
+        if(!auth()->user()->role) {
+            return redirect();
+        }
+
         return view('user.profile.setup');
     }
 
@@ -46,10 +50,13 @@ class ProfileSetupController extends Controller
         ]);
 
         $user = [
-            'username' => $request->username,
             'name' => $request->name,
             'role' => 'worker'
         ];
+
+        if (!auth()->user()->username) {
+            $user['username'] = $request->username;
+        }
 
         $worker = [
             'expertise' => $request->expertise,
@@ -77,9 +84,14 @@ class ProfileSetupController extends Controller
 
         // dd($user);
         auth()->user()->update($user);
-        Worker::firstOrCreate(['user_id' => auth()->id()], $worker);
+        Worker::updateOrCreate(['user_id' => auth()->id()], $worker);
 
-        return redirect(route('user.setup.worker.additional'));
+        if(@$_GET['ref']) {
+            Alert::success('Successfully', 'Your profile has been updated');
+            return back();
+        } else {
+            return redirect(route('user.setup.worker.additional'));
+        }
     }
 
     public function setup_worker_additional()
@@ -87,6 +99,7 @@ class ProfileSetupController extends Controller
         if(!auth()->user()->worker) {
             return abort(404);
         }
+        
         $experiences = Experience::all();
         $availabilities = Availability::all();
         $services = Service::all();
@@ -99,7 +112,7 @@ class ProfileSetupController extends Controller
 
     public function store_additional(Request $request)
     {
-        $attr = request()->except(['_token', 'available']);
+        $attr = request()->except(['_token', 'available', 'ref']);
         $attr['status'] = 'Pending';
 
         $request->validate([
@@ -112,7 +125,13 @@ class ProfileSetupController extends Controller
         // dd($attr);
         $user->worker()->update($attr);
         $user->worker->availability()->sync($request->available);
-        return redirect()->route('worker.dashboard');
+
+        if(@$_GET['ref']) {
+            Alert::success('Successfully', 'Your information has been updated');
+            return back();
+        } else {
+            return redirect()->route('worker.dashboard');
+        }
     }
 
     public function setup_recruiter()

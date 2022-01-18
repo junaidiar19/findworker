@@ -38,7 +38,6 @@ class AuthController extends Controller
             return $this->sendFailedResponse($e->getMessage());
         }
     }
-
   
     public function handleProviderCallback( $driver )
     {
@@ -56,7 +55,11 @@ class AuthController extends Controller
 
     protected function sendSuccessResponse()
     {
-        return redirect()->route('user.setup');
+        if(auth()->user()->role) {
+            return redirect()->route(auth()->user()->role . '.dashboard');
+        } else {
+            return redirect()->route('user.setup');
+        }
     }
 
     protected function sendFailedResponse($msg = null)

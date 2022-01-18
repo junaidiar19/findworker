@@ -9,7 +9,9 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        $var['active'] = 'dashboard';
         $worker = auth()->user()->worker;
-        return view('user.dashboard.worker', compact('worker'));
+
+        return view('worker.dashboard', $var, compact('worker'));
     }
 }

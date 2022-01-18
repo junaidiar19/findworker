@@ -11,7 +11,7 @@ class Worker extends Model
     protected $fillable = [
         'expertise', 'portofolio_link', 'phone', 'provinsi_id', 'kota_id',
         'about', 'experience', 'skills', 'user_id', 'linkedin', 'facebook', 'instagram',
-        'twitter', 'status'
+        'twitter', 'status', 'actived_at'
     ];
 
     protected $with = 'availability';
