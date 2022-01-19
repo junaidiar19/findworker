@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProfileRequest;
+use App\Http\Traits\UploadAvatarTrait;
 use App\Models\Kota;
 use App\Models\Worker;
 use App\Models\Service;
@@ -9,15 +11,17 @@ use App\Models\Provinsi;
 use App\Models\Experience;
 use App\Models\Availability;
 use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ProfileSetupController extends Controller
 {
+
+    use UploadAvatarTrait;
+
     public function setup()
     {
         if(!auth()->user()->role) {
-            return redirect();
+            return redirect()->route('home');
         }
 
         return view('user.profile.setup');
@@ -37,17 +41,12 @@ class ProfileSetupController extends Controller
         return view('user.profile.setup.worker_profile', $var);
     }
 
-    public function store_profile(Request $request)
+    public function store_profile(ProfileRequest $request)
     {
-        $request->validate([
-            'username' => 'required|unique:users,id,' . auth()->id(),
-            'name' => 'required',
-            'expertise' => 'required',
-            'phone' => 'required|unique:users,id,' . auth()->id(),
-            'provinsi' => 'required',
-            'kota' => 'required',
-            'about' => 'required',
-        ]);
+        $worker = $request->safe()->merge([
+            'user_id' => auth()->id(),
+            'portofolio_link' => $request->portofolio_link
+        ])->except(['name', 'username']);
 
         $user = [
             'name' => $request->name,
@@ -58,31 +57,7 @@ class ProfileSetupController extends Controller
             $user['username'] = $request->username;
         }
 
-        $worker = [
-            'expertise' => $request->expertise,
-            'portofolio_link' => $request->portofolio_link,
-            'phone' => $request->phone,
-            'provinsi_id' => $request->provinsi,
-            'kota_id' => $request->kota,
-            'about' => $request->about,
-            'user_id' => auth()->id(),
-        ];
-
-        if ($request->hasFile('avatar')) {
-            $request->validate([
-                'avatar' => 'mimes:png,jpg,jpeg', 'max:5012'
-            ]);
-            
-            $path = $request->file('avatar')->store('avatar');
-            $img = Image::make("storage/" . $path);
-            $img->resize(700, null, function ($constraint) {
-              $constraint->aspectRatio();
-            });
-            $img->save();
-            $user['avatar'] = $path;
-        }
-
-        // dd($user);
+        $user['avatar'] = $this->uploadAvatar($request);
         auth()->user()->update($user);
         Worker::updateOrCreate(['user_id' => auth()->id()], $worker);
 
@@ -100,14 +75,14 @@ class ProfileSetupController extends Controller
             return abort(404);
         }
         
-        $experiences = Experience::all();
-        $availabilities = Availability::all();
-        $services = Service::all();
+        $var['experiences'] = Experience::all();
+        $var['availabilities'] = Availability::all();
+        $var['services'] = Service::all();
 
         $worker = auth()->user()->worker;
-        $aval = $worker->availability->pluck('id');
+        $var['aval'] = $worker->availability->pluck('id');
 
-        return view('user.profile.setup.worker_additional', compact('experiences', 'availabilities', 'services', 'aval'));
+        return view('user.profile.setup.worker_additional', $var);
     }
 
     public function store_additional(Request $request)

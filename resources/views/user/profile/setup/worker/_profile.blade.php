@@ -25,7 +25,7 @@
             <label for="">Username <span>*</span></label>
             <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username', auth()->user()->username) }}" placeholder="Ex. johndoe" required
                 @if (auth()->user()->username)
-                    disabled
+                    readonly
                 @endif
             >
             @error('username')
@@ -77,7 +77,7 @@
 
         <div class="form-group">
             <label for="">Provinsi <span>*</span></label>
-            <select class="form-control" name="provinsi" onchange="cityCheck(this.value)" required>
+            <select class="form-control" name="provinsi_id" onchange="cityCheck(this.value)" required>
                 <option value="">-Silakan Pilih-</option>
                 @foreach ($provinsi as $e)
                     <option value="{{ $e->id }}" {{ (old('provinsi', @$worker->provinsi_id) == $e->id) ? 'selected' : '' }}>{{ $e->name }}</option>
@@ -92,7 +92,7 @@
 
         <div class="form-group">
             <label for="">Kota <span>*</span></label>
-            <select class="form-control" name="kota" id="city-option" required>
+            <select class="form-control" name="kota_id" id="city-option" required>
                 <option value="">-Silakan Pilih-</option>
                 @if (@$kota)
                 @foreach ($kota as $e)
