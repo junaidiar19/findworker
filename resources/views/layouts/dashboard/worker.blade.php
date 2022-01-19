@@ -50,11 +50,13 @@
                             <i class="bi bi-signpost-2 me-1"></i> Recommendation
                         </a>
                     </li>
+                    @if ($worker->actived_at)
                     <li>
                         <a href="">
                             <i class="bi bi-shift me-1"></i> Upgrade
                         </a>
                     </li>
+                    @endif
                 </ul>
             </div>
             <div class="col-md-9 py-4 ps-4">

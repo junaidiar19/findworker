@@ -17,6 +17,7 @@
   {{-- <script type="module">
     import Turbo from 'https://cdn.skypack.dev/pin/@hotwired/turbo@v7.0.0-beta.2-ou6dW2bg0qdKgUED7QEB/min/@hotwired/turbo.js';
   </script> --}}
+  @livewireStyles
 </head>
 
 <body>
@@ -27,10 +28,10 @@
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
+  @livewireScripts
+  @stack('before-script')
+  @include('user.includes.scripts')
+  @stack('after-script')
+  @include('sweetalert::alert')
 </body>
-@stack('before-script')
-@include('user.includes.scripts')
-@stack('after-script')
-@include('sweetalert::alert')
-
 </html>
