@@ -21,8 +21,18 @@ class Roles
             return redirect()->route('login');
         }
 
-        if (Auth::user()->role == $role) {
-            return $next($request);
+        $user = auth()->user();
+
+        if ($user->role == $role) {
+
+            if($user->role == 'worker') {
+                if ($user->worker->actived_at) {
+                    return $next($request);
+                }
+            } else {
+                return $next($request);
+            }
+            
         }
 
         return abort(404, 'Page not found');

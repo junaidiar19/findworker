@@ -108,7 +108,7 @@
         </div>
 
         <div class="form-group">
-            <label for="">Tulis sesuatu tentang diri Anda <span>*</span></label>
+            <label for="">Penjelasan singkat tentang diri Anda <span>*</span></label>
             <textarea name="about" class="form-control" cols="30" rows="4">{{ @$worker->about }}</textarea>
             @error('kota')
                 <div class="invalid-feedback">

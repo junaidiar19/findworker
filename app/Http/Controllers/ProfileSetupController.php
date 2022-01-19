@@ -87,6 +87,11 @@ class ProfileSetupController extends Controller
 
     public function store_additional(Request $request)
     {
+
+        if(!auth()->user()->worker) {
+            return abort(404);
+        }
+        
         $attr = request()->except(['_token', 'available', 'ref']);
         $attr['status'] = 'Pending';
 

@@ -19,7 +19,7 @@
                     <img src="{{ auth()->user()->getAvatar }}" class="border-avatar me-2 shadow-sm" height="40" width="40" alt="">
                     <div class="my-auto">
                         <p class="mb-0 fw-semibold">{{ auth()->user()->name }}</p>
-                        <p class="mb-0 text-muted text-sm">{{ $worker->expertise }}</p>
+                        <p class="mb-0 text-muted text-sm">{{ $worker->expertise ?? 'Guest' }}</p>
                     </div>
                 </div>
                 <ul class="menu border-0">
@@ -28,11 +28,13 @@
                             <i class="bi bi-columns-gap me-1"></i> Dashboard
                         </a>
                     </li>
+                    @if ($worker->actived_at)
                     <li>
                         <a href="{{ route('worker.profile.edit') }}" class="{{ (@$active == 'profile') ? 'active-menu' : '' }}">
                             <i class="bi bi-person-circle me-1"></i> Edit Profile
                         </a>
                     </li>
+                    @endif
                     <li>
                         <a href="{{ route('portofolio.index') }}" class="{{ (@$active == 'portofolio' || request()->routeIs('portofolio.index')) ? 'active-menu' : '' }}">
                             <i class="bi bi-folder-plus me-1"></i> Portofolio

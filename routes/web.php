@@ -24,6 +24,16 @@ use App\Http\Controllers\Worker\RecommendationController;
 |
 */
 
+//
+
+
+/*
+    Rencana fitur:
+    1. Pencarian berdasarkan kata kunci. Misal start up keuangan, maka akan muncul suggestion developer, ui ux, graphic designer
+    2. kategori small team, medium team, big team
+
+*/
+
 // Auth
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('oauth/{driver}', [AuthController::class, 'redirectToProvider'])->name('social.oauth');
@@ -49,14 +59,15 @@ Route::group(['middleware' => 'auth', 'prefix' => 'profile'], function() {
     });
     
     Route::get('/setup/recruiter', [ProfileSetupController::class, 'setup_recruiter'])->name('user.setup.recruiter');
-
-    
 });
 
-Route::group(['middleware' => 'role:worker', 'prefix' => 'worker', 'middleware' => 'worker.variable'], function() {
-    Route::get('/dashboard', [WorkerDashboardController::class, 'index'])->name('worker.dashboard');
-    Route::get('/edit-profile', [WorkerProfileController::class, 'edit'])->name('worker.profile.edit');
+Route::group(['middleware' => 'worker.variable', 'prefix' => 'worker'], function() {
 
+    Route::middleware(['role:worker'])->group(function () {
+        Route::get('/edit-profile', [WorkerProfileController::class, 'edit'])->name('worker.profile.edit');
+    });
+
+    Route::get('/dashboard', [WorkerDashboardController::class, 'index'])->name('worker.dashboard');
     Route::resource('portofolio', PortofolioController::class);
     Route::resource('certificate', CertificateController::class);
     Route::resource('recommendation', RecommendationController::class);

@@ -5,7 +5,7 @@
             <div class="row">
 
                 <div class="col-lg-3 col-md-6 footer-contact">
-                    <h3>{{ env('APP_NAME') }}</h3>
+                    <h4>{{ env('APP_NAME') }}</h4>
                     <p>
                         Sungai Lumbah <br>
                         Handil Bakti, Barito Kuala<br>

@@ -30,7 +30,7 @@ class ProfileRequest extends FormRequest
             'phone' => 'required|unique:users,id,' . auth()->id(),
             'provinsi_id' => 'required',
             'kota_id' => 'required',
-            'about' => 'required',
+            'about' => 'required|max:200',
         ];
     }
 

@@ -39,11 +39,7 @@
                         {{-- {{ auth()->user()->name }} --}}
                     </a>
                     <ul class="dropdown-menu border-0">
-                        @if (auth()->user()->role)
-                        <li><a href="{{ route(auth()->user()->role . '.dashboard') }}">Dashboard</a></li>
-                        @else
-                        <li><a href="{{ route('user.setup') }}">Profile Setup</a></li>
-                        @endif
+                        <li><a href="{{ route('worker.dashboard') }}">Dashboard</a></li>
                         <li><a href="#" 
                             onclick="event.preventDefault(); 
                             document.getElementById('logout-form').submit();"
