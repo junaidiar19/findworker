@@ -14,7 +14,7 @@
                     <a class="nav-link text-dark fw-semibold" href="#">Hire Worker</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark fw-semibold" href="#">Explore Jobs</a>
+                    <a class="nav-link text-dark fw-semibold" href="#">Quick Team</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link text-dark fw-semibold dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

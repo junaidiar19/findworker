@@ -8,7 +8,7 @@
                     and do your collaboration</h1>
                 <p class="fw-normal text-muted">Find Worker menjadi tempat bagi siapa saja yang ingin mencari worker bertalenta dan berpengalaman dengan cepat</p>
                 <a href="#about" class="btn btn-orange btn-lg me-1">Hire Worker</a>
-                <a href="#about" class="btn btn-orange-light btn-lg">Explore Jobs</a>
+                <a href="#about" class="btn btn-orange-light btn-lg">Quick Team</a>
             </div>
             <div class="col-lg-5 order-1 order-lg-2 hero-img">
                 <img src="/img/vector/undraw_business_deal_re_up4u.svg" class="img-fluid animated" alt="">
