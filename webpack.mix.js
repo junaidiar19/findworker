@@ -17,5 +17,6 @@ const mix = require('laravel-mix');
  mix.styles([
     './public/assets/css/custom.css',
     './public/assets/css/wizard.css',
+    './public/assets/css/badge.css',
     './public/assets/css/style.css',
  ], './public/assets/css/style.min.css');

@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileRequest;
-use App\Http\Traits\UploadAvatarTrait;
 use App\Models\Kota;
 use App\Models\Worker;
 use App\Models\Service;
@@ -11,6 +9,9 @@ use App\Models\Provinsi;
 use App\Models\Experience;
 use App\Models\Availability;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\ProfileRequest;
+use App\Http\Traits\UploadAvatarTrait;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ProfileSetupController extends Controller
@@ -20,9 +21,9 @@ class ProfileSetupController extends Controller
 
     public function setup()
     {
-        if(!auth()->user()->role) {
-            return redirect()->route('home');
-        }
+        // if(!auth()->user()->role) {
+        //     return redirect()->route('home');
+        // }
 
         return view('user.profile.setup');
     }
@@ -38,7 +39,7 @@ class ProfileSetupController extends Controller
             }
         }
 
-        return view('user.profile.setup.worker_profile', $var);
+        return view('user.profile.setup.worker-profile', $var);
     }
 
     public function store_profile(ProfileRequest $request)
@@ -58,8 +59,11 @@ class ProfileSetupController extends Controller
         }
 
         $user['avatar'] = $this->uploadAvatar($request);
-        auth()->user()->update($user);
-        Worker::updateOrCreate(['user_id' => auth()->id()], $worker);
+
+        DB::transaction(function () use ($user, $worker) {
+            auth()->user()->update($user);
+            Worker::updateOrCreate(['user_id' => auth()->id()], $worker);
+        });
 
         if(@$_GET['ref']) {
             Alert::success('Successfully', 'Your profile has been updated');
@@ -82,7 +86,7 @@ class ProfileSetupController extends Controller
         $worker = auth()->user()->worker;
         $var['aval'] = $worker->availability->pluck('id');
 
-        return view('user.profile.setup.worker_additional', $var);
+        return view('user.profile.setup.worker-additional', $var);
     }
 
     public function store_additional(Request $request)
@@ -91,7 +95,7 @@ class ProfileSetupController extends Controller
         if(!auth()->user()->worker) {
             return abort(404);
         }
-        
+
         $attr = request()->except(['_token', 'available', 'ref']);
         $attr['status'] = 'Pending';
 

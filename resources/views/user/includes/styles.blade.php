@@ -6,11 +6,11 @@
 
 <!-- Vendor CSS Files -->
 <link href="{{ asset('vendor/aos/aos.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+{{-- <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script> --}}
 <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
 <link href="{{ asset('vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
-<link href="{{ asset('vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-{{-- <link href="{{ asset('vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet"> --}}
 
 <!-- Template Main CSS File -->
 <link href="{{ asset('assets/css/style.min.css') }}" rel="stylesheet">

@@ -2,7 +2,7 @@
 @section('subcontent')
 
 @if (@$worker)
-    @if ($worker->actived_at)
+    @if (@$worker->actived_at)
         
     @else
         <div class="row justify-content-center mt-3">
