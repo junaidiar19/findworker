@@ -455,6 +455,15 @@ input[type="radio"], input[type="checkbox"] {
   font-size: 2rem
 }
 
+.card-hover {
+  transition: 0.3s;
+}
+
+.card-hover:hover {
+  box-shadow: 0 10px 29px 0 rgba(230, 131, 74, 0.1);
+  border: 1px solid var(--orange);
+}
+
 #progressbar {
     margin-bottom: 30px;
     overflow: hidden;

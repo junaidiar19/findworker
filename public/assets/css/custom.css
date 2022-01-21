@@ -454,3 +454,12 @@ input[type="radio"], input[type="checkbox"] {
   line-height: 5rem;
   font-size: 2rem
 }
+
+.card-hover {
+  transition: 0.3s;
+}
+
+.card-hover:hover {
+  box-shadow: 0 10px 29px 0 rgba(230, 131, 74, 0.1);
+  border: 1px solid var(--orange);
+}
