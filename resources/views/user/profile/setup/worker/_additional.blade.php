@@ -101,6 +101,17 @@
         @enderror
     </div>
 
+    <div class="mb-5">
+        <p class="line-between fw-semibold mb-5">Salary Range</p>
+
+        <div class="d-flex">
+            <input type="text" class="form-control" id="form-input-1" value="{{ $worker->salary_start }}" onkeyup="rupiahFormat(this.value, '1', 'Rp. ')" name="salary_start" placeholder="Rp. 0" required>
+            <span class="mx-3 mt-1">-</span>
+            <input type="text" class="form-control" id="form-input-2" value="{{ $worker->salary_end }}" onkeyup="rupiahFormat(this.value, '2', 'Rp. ')" name="salary_end" placeholder="Rp. 0" required>
+        </div>
+
+    </div>
+
     <div class="mb-4">
         <p class="line-between fw-semibold mb-5">Social Media</p>
 
@@ -108,28 +119,28 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for=""><i class="bi bi-linkedin me-1"></i>Linkedin</label>
-                    <input type="text" class="form-control" name="linkedin" value="{{ $worker->linkedin }}" placeholder="Ex. Username">
+                    <input type="text" class="form-control" name="linkedin" value="{{ $worker->linkedin }}" placeholder="Ex. https://www.linkedin.com/">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for=""><i class="bi bi-twitter me-1"></i>Twitter</label>
-                    <input type="text" class="form-control" name="twitter" value="{{ $worker->twitter }}" placeholder="Ex. Username">
+                    <input type="text" class="form-control" name="twitter" value="{{ $worker->twitter }}" placeholder="Ex. https://www.twitter.com/">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for=""><i class="bi bi-instagram me-1"></i>Instagram</label>
-                    <input type="text" class="form-control" name="instagram" value="{{ $worker->instagram }}" placeholder="Ex. Username">
+                    <input type="text" class="form-control" name="instagram" value="{{ $worker->instagram }}" placeholder="Ex. https://www.instagram.com/">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for=""><i class="bi bi-facebook me-1"></i>Facebook</label>
-                    <input type="text" class="form-control" name="facebook" value="{{ $worker->facebook }}" placeholder="Ex. Username">
+                    <input type="text" class="form-control" name="facebook" value="{{ $worker->facebook }}" placeholder="Ex. https://www.facebook.com/">
                 </div>
             </div>
 
@@ -144,4 +155,5 @@
 
 @push('after-script')
     @include('partials.processing')
+    @include('partials.rupiah-format')
 @endpush

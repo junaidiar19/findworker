@@ -47,7 +47,7 @@ class ProfileSetupController extends Controller
         $worker = $request->safe()->merge([
             'user_id' => auth()->id(),
             'portofolio_link' => $request->portofolio_link
-        ])->except(['name', 'username']);
+        ])->except(['name']);
 
         $user = [
             'name' => $request->name,
@@ -97,12 +97,19 @@ class ProfileSetupController extends Controller
         }
 
         $attr = request()->except(['_token', 'available', 'ref']);
-        $attr['status'] = 'Pending';
+
+        $worker = auth()->user()->worker;
+        if (!$worker->actived_at) {
+            $attr['status'] = 'Pending';
+        }
 
         $request->validate([
             'experience' => 'required',
             'skills' => 'required',
         ]);
+
+        $attr['salary_start'] = str_replace("Rp ", "", str_replace(".", "", $request->salary_start));
+        $attr['salary_end'] = str_replace("Rp ", "", str_replace(".", "", $request->salary_end));
 
         $user = auth()->user();
 

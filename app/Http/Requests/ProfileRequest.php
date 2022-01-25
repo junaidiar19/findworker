@@ -24,10 +24,10 @@ class ProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|unique:users,id,' . auth()->id(),
+            'username' => 'required|unique:workers,id,' . auth()->id(),
             'name' => 'required',
             'expertise' => 'required',
-            'phone' => 'required|unique:users,id,' . auth()->id(),
+            'phone' => 'required|unique:workers,id,' . auth()->id(),
             'provinsi_id' => 'required',
             'kota_id' => 'required',
             'about' => 'required|max:200',

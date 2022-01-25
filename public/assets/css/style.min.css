@@ -2,8 +2,13 @@
   --orange: #FC7341;
   --orange-light: #faf1ed;
   --orange-light-2: #fff3ef;
-  --bg-main: #F1F8FF;
+  --bg-main: #f5f7f9;
   --gray: #565656;
+  --darkblue: #22215b;
+}
+
+.text-darkblue {
+  color: var(--darkblue) !important;
 }
 
 .text-orange {
@@ -15,11 +20,11 @@
 }
 
 .rounded-md {
-  border-radius: 0.50rem;
+  border-radius: 0.65rem !important;
 }
 
 .rounded-lg {
-  border-radius: 1rem;
+  border-radius: 1rem !important;
 }
 
 .bg-main {
@@ -99,6 +104,10 @@
   height: 40px;
 }
 
+.h-80 {
+  height: 80px;
+}
+
 .h-120 {
   height: 120px;
 }
@@ -142,6 +151,18 @@
 
 .fw-semibold {
   font-weight: 500 !important;
+}
+
+.fw-600 {
+  font-weight: 600 !important;
+}
+
+.text-xxs {
+  font-size: xx-small;
+}
+
+.text-xs {
+  font-size: x-small;
 }
 
 .text-sm {
@@ -221,7 +242,7 @@ label {
 
 .tokenfield.focus {
   border-color: #fd9670 !important;
-  box-shadow: none;
+  box-shadow: none !important;
 }
 
 .tokenfield .token-input {
@@ -460,8 +481,55 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .card-hover:hover {
-  box-shadow: 0 10px 29px 0 rgba(230, 131, 74, 0.1);
+  box-shadow: 0px 8px 20px rgb(0 0 0 / 6%);
+  /* border: 1px solid var(--orange); */
+}
+
+.custom-search {
+  position: relative;
+  color: #aaa;
+}
+
+.custom-search input { 
+  padding-left: 39px;
+}
+.custom-search i { 
+  position: absolute;
+  top: 11.5px;
+  left: 16px;
+  color: #adb5bd;
+  font-size: small;
+}
+
+.card-search {
+  position: absolute;
+  top: 117px;
+  left: 23%;
+  width: 58%;
+  box-shadow: 0px 8px 20px rgb(0 0 0 / 6%);
+  border: 0;
+}
+
+.card-search .card-body {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.select2-container--bootstrap-5 .select2-selection {
+  font-size: 14px;
+}
+
+.select2-container--bootstrap-5.select2-container--focus .select2-selection, .select2-container--bootstrap-5.select2-container--open .select2-selection {
   border: 1px solid var(--orange);
+  box-shadow: none;
+}
+
+.select2-container--bootstrap-5 .select2-dropdown .select2-results__options .select2-results__option {
+  font-size: 14px;
+}
+
+.select2-container--bootstrap-5 .select2-selection--single {
+  background-image: none;
 }
 
 #progressbar {
@@ -560,7 +628,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .badge-light-primary {
-    background: rgba(70, 128, 255, .2);
+    background: rgba(70, 128, 255, .1);
     border-color: #cbdbff;
     color: #4680ff
 }
@@ -577,7 +645,7 @@ a.badge-light-primary:hover {
 .badge-light-secondary {
     background: #eef1f7;
     border-color: #d6d8db;
-    color: #1c2238
+    color: var(--darkblue)
 }
 
 a.badge-light-secondary.active,
@@ -590,7 +658,7 @@ a.badge-light-secondary:hover {
 }
 
 .badge-light-success {
-    background: rgba(156, 204, 101, .2);
+    background: rgba(156, 204, 101, .1);
     border-color: #e3f1d4;
     color: #28a745
 }
@@ -605,7 +673,7 @@ a.badge-light-success:hover {
 }
 
 .badge-light-info {
-    background: rgba(0, 172, 193, .2);
+    background: rgba(0, 172, 193, .1);
     border-color: #b8e8ee;
     color: #00acc1
 }
@@ -620,7 +688,7 @@ a.badge-light-info:hover {
 }
 
 .badge-light-warning {
-    background: rgba(255, 186, 87, .2);
+    background: rgba(255, 186, 87, .1);
     border-color: #ffecd0;
     color: #ffba57
 }
@@ -635,7 +703,7 @@ a.badge-light-warning:hover {
 }
 
 .badge-light-danger {
-    background: rgba(255, 82, 82, .2);
+    background: rgba(255, 82, 82, .1);
     border-color: #ffcfcf;
     color: #ff5252
 }
@@ -650,7 +718,7 @@ a.badge-light-danger:hover {
 }
 
 .badge-light-light {
-    background: rgba(248, 249, 250, .2);
+    background: rgba(248, 249, 250, .1);
     border-color: #fdfdfe;
     color: #f8f9fa
 }
@@ -665,7 +733,7 @@ a.badge-light-light:hover {
 }
 
 .badge-light-dark {
-    background: rgba(52, 58, 64, .2);
+    background: rgba(52, 58, 64, .1);
     border-color: #c6c8ca;
     color: #343a40
 }
@@ -676,6 +744,21 @@ a.badge-light-dark:focus,
 a.badge-light-dark:hover {
     background: #343a40;
     border-color: #343a40;
+    color: #d6d8d9
+}
+
+.badge-light-violet {
+    background: #f0e6fd;
+    border-color: #c6c8ca;
+    color: #8c56ca
+}
+
+a.badge-light-violet.active,
+a.badge-light-violet:active,
+a.badge-light-violet:focus,
+a.badge-light-violet:hover {
+    background: #9568c8;
+    border-color: #9568c8;
     color: #d6d8d9
 }
 /**

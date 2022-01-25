@@ -4,7 +4,7 @@
 }
 
 .badge-light-primary {
-    background: rgba(70, 128, 255, .2);
+    background: rgba(70, 128, 255, .1);
     border-color: #cbdbff;
     color: #4680ff
 }
@@ -21,7 +21,7 @@ a.badge-light-primary:hover {
 .badge-light-secondary {
     background: #eef1f7;
     border-color: #d6d8db;
-    color: #1c2238
+    color: var(--darkblue)
 }
 
 a.badge-light-secondary.active,
@@ -34,7 +34,7 @@ a.badge-light-secondary:hover {
 }
 
 .badge-light-success {
-    background: rgba(156, 204, 101, .2);
+    background: rgba(156, 204, 101, .1);
     border-color: #e3f1d4;
     color: #28a745
 }
@@ -49,7 +49,7 @@ a.badge-light-success:hover {
 }
 
 .badge-light-info {
-    background: rgba(0, 172, 193, .2);
+    background: rgba(0, 172, 193, .1);
     border-color: #b8e8ee;
     color: #00acc1
 }
@@ -64,7 +64,7 @@ a.badge-light-info:hover {
 }
 
 .badge-light-warning {
-    background: rgba(255, 186, 87, .2);
+    background: rgba(255, 186, 87, .1);
     border-color: #ffecd0;
     color: #ffba57
 }
@@ -79,7 +79,7 @@ a.badge-light-warning:hover {
 }
 
 .badge-light-danger {
-    background: rgba(255, 82, 82, .2);
+    background: rgba(255, 82, 82, .1);
     border-color: #ffcfcf;
     color: #ff5252
 }
@@ -94,7 +94,7 @@ a.badge-light-danger:hover {
 }
 
 .badge-light-light {
-    background: rgba(248, 249, 250, .2);
+    background: rgba(248, 249, 250, .1);
     border-color: #fdfdfe;
     color: #f8f9fa
 }
@@ -109,7 +109,7 @@ a.badge-light-light:hover {
 }
 
 .badge-light-dark {
-    background: rgba(52, 58, 64, .2);
+    background: rgba(52, 58, 64, .1);
     border-color: #c6c8ca;
     color: #343a40
 }
@@ -120,5 +120,20 @@ a.badge-light-dark:focus,
 a.badge-light-dark:hover {
     background: #343a40;
     border-color: #343a40;
+    color: #d6d8d9
+}
+
+.badge-light-violet {
+    background: #f0e6fd;
+    border-color: #c6c8ca;
+    color: #8c56ca
+}
+
+a.badge-light-violet.active,
+a.badge-light-violet:active,
+a.badge-light-violet:focus,
+a.badge-light-violet:hover {
+    background: #9568c8;
+    border-color: #9568c8;
     color: #d6d8d9
 }

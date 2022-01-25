@@ -2,8 +2,13 @@
   --orange: #FC7341;
   --orange-light: #faf1ed;
   --orange-light-2: #fff3ef;
-  --bg-main: #F1F8FF;
+  --bg-main: #f5f7f9;
   --gray: #565656;
+  --darkblue: #22215b;
+}
+
+.text-darkblue {
+  color: var(--darkblue) !important;
 }
 
 .text-orange {
@@ -15,11 +20,11 @@
 }
 
 .rounded-md {
-  border-radius: 0.50rem;
+  border-radius: 0.65rem !important;
 }
 
 .rounded-lg {
-  border-radius: 1rem;
+  border-radius: 1rem !important;
 }
 
 .bg-main {
@@ -99,6 +104,10 @@
   height: 40px;
 }
 
+.h-80 {
+  height: 80px;
+}
+
 .h-120 {
   height: 120px;
 }
@@ -142,6 +151,18 @@
 
 .fw-semibold {
   font-weight: 500 !important;
+}
+
+.fw-600 {
+  font-weight: 600 !important;
+}
+
+.text-xxs {
+  font-size: xx-small;
+}
+
+.text-xs {
+  font-size: x-small;
 }
 
 .text-sm {
@@ -221,7 +242,7 @@ label {
 
 .tokenfield.focus {
   border-color: #fd9670 !important;
-  box-shadow: none;
+  box-shadow: none !important;
 }
 
 .tokenfield .token-input {
@@ -460,6 +481,53 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .card-hover:hover {
-  box-shadow: 0 10px 29px 0 rgba(230, 131, 74, 0.1);
+  box-shadow: 0px 8px 20px rgb(0 0 0 / 6%);
+  /* border: 1px solid var(--orange); */
+}
+
+.custom-search {
+  position: relative;
+  color: #aaa;
+}
+
+.custom-search input { 
+  padding-left: 39px;
+}
+.custom-search i { 
+  position: absolute;
+  top: 11.5px;
+  left: 16px;
+  color: #adb5bd;
+  font-size: small;
+}
+
+.card-search {
+  position: absolute;
+  top: 117px;
+  left: 23%;
+  width: 58%;
+  box-shadow: 0px 8px 20px rgb(0 0 0 / 6%);
+  border: 0;
+}
+
+.card-search .card-body {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.select2-container--bootstrap-5 .select2-selection {
+  font-size: 14px;
+}
+
+.select2-container--bootstrap-5.select2-container--focus .select2-selection, .select2-container--bootstrap-5.select2-container--open .select2-selection {
   border: 1px solid var(--orange);
+  box-shadow: none;
+}
+
+.select2-container--bootstrap-5 .select2-dropdown .select2-results__options .select2-results__option {
+  font-size: 14px;
+}
+
+.select2-container--bootstrap-5 .select2-selection--single {
+  background-image: none;
 }

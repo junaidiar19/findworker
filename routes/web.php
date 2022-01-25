@@ -8,10 +8,11 @@ use App\Http\Controllers\RequestController;
 use App\Http\Controllers\ProfileSetupController;
 use App\Http\Controllers\Worker\ProfileController as WorkerProfileController;
 use App\Http\Controllers\Worker\PortofolioController;
-use App\Http\Controllers\User\DashboardController as UserDashboardController;
 use App\Http\Controllers\Worker\CertificateController;
 use App\Http\Controllers\Worker\DashboardController as WorkerDashboardController;
 use App\Http\Controllers\Worker\RecommendationController;
+use App\Http\Controllers\WorkerDetailController;
+use App\Http\Controllers\WorkerWaitController;
 use App\Http\Livewire\HireIndex;
 use App\Http\Livewire\QuickTeamIndex;
 
@@ -50,6 +51,13 @@ Route::get('/city-check', [RequestController::class, 'city'])->name('city-check'
 // Hire Worker
 Route::get('/hire-worker', HireIndex::class)->name('user.hire');
 Route::get('/quick-team', QuickTeamIndex::class)->name('user.quick.team');
+
+// Worker Waiting
+Route::get('worker-wait', WorkerWaitController::class);
+
+// Worker Detail
+Route::get('hire-me/{username}', [WorkerDetailController::class, 'hire'])->name('worker.hire');
+Route::get('profile/{username}', [WorkerDetailController::class, 'detail'])->name('worker.detail');
 
 Route::get('/setup', [ProfileSetupController::class, 'setup'])->name('user.setup');
 Route::group(['middleware' => 'auth', 'prefix' => 'profile'], function() {

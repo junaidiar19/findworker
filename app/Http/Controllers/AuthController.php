@@ -58,7 +58,7 @@ class AuthController extends Controller
         if(auth()->user()->role) {
             return redirect()->route(auth()->user()->role . '.dashboard');
         } else {
-            return redirect()->route('user.setup');
+            return redirect('/');
         }
     }
 

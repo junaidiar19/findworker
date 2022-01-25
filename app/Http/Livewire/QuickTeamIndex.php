@@ -9,10 +9,9 @@ class QuickTeamIndex extends Component
 {
     public function render()
     {
-        $available = Availability::all();
+        $var['categoryteam'] = ['Small', 'Medium', 'Big'];
+        $var['categoryproject'] = ['Start Up', 'Bussiness', 'Personal'];
 
-        return view('livewire.quick-team-index', [
-            'available' => $available
-        ])->extends('layouts.user');
+        return view('livewire.quick-team-index', $var)->extends('layouts.user');
     }
 }
