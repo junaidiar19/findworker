@@ -553,3 +553,7 @@ input[type="radio"], input[type="checkbox"] {
 .page-link {
   color: var(--orange);
 }
+
+.page-link:hover {
+  color: var(--orange);
+}

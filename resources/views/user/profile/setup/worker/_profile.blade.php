@@ -23,8 +23,8 @@
     <div class="col-md-7">
         <div class="form-group">
             <label for="">Username <span>*</span></label>
-            <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username', $worker->username) }}" placeholder="Ex. johndoe" required
-                @if ($worker->username)
+            <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username', @$worker->username) }}" placeholder="Ex. johndoe" required
+                @if (@$worker->username)
                     readonly
                 @endif
             >

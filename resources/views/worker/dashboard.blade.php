@@ -3,7 +3,13 @@
 
 @if (@$worker)
     @if (@$worker->actived_at)
-        
+    
+    <x-card-guest
+        col="col-md-7"
+        vector="img/vector/undraw_dashboard_re_3b76.svg" 
+        title="Hai, Welcome to Find Woker!" 
+        description="Ini adalah halaman dashboard Anda. Tingkatkan terus skill Anda!" 
+    />
     @else
         <div class="row justify-content-center mt-3">
             <div class="col-md-6 text-center">

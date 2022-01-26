@@ -34,6 +34,8 @@ use App\Http\Livewire\QuickTeamIndex;
     Quick Team:
     1. Pencarian berdasarkan kata kunci. Misal start up keuangan, maka akan muncul suggestion developer, ui ux, graphic designer
     2. kategori small team, medium team, big team
+    3. Bekerja sama dengan platform pengembangan skill
+    4. Membuat kelas pengembangan diri
 */
 
 // Auth

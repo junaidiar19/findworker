@@ -14,7 +14,7 @@ class HireIndex extends Component
 
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $paginate = 15;
+    public $paginate = 16;
     public $q;
     public $location;
     public $ready;
