@@ -11,11 +11,11 @@
                     <div class="col-md-3 mb-3 mb-md-0">
                         <div class="custom-search">
                             <i class="fa fa-pencil"></i>
-                            <input type="text" class="form-control" wire:model="projectName" placeholder="Rencana Project Anda">
+                            <input type="text" class="form-control" wire:model="projectName" placeholder="Rencana Project Anda" required>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3 mb-md-0">
-                        <select wire:model="category" class="form-control">
+                        <select wire:model="category" class="form-control" required>
                             <option value="">-Project Category-</option>
                             @foreach ($projectcategory as $e)
                                 <option value="{{ $e }}">{{ $e }}</option>
@@ -23,7 +23,7 @@
                         </select>
                     </div>
                     <div class="col-md-2 mb-3 mb-md-0">
-                        <select wire:model="team" class="form-control">
+                        <select wire:model="team" class="form-control" required>
                             <option value="">-Team Category-</option>
                             @foreach ($teamcategory as $e)
                                 <option value="{{ $e }}">{{ $e }}</option>
@@ -31,7 +31,7 @@
                         </select>
                     </div>
                     <div class="col-md-2 mb-3 mb-md-0">
-                        <select wire:model="ability" class="form-control select2">
+                        <select wire:model="ability" class="form-control select2" required>
                             <option value="">-Team Ability-</option>
                             @foreach ($teamability as $e)
                                 <option value="{{ $e }}">{{ $e }}</option>
@@ -59,10 +59,10 @@
             <div class="alert alert-primary">
                 <div class="row">
                     <div class="col-md-6">
-                        <p class="mb-0">Menampilkan <b>6</b> Worker dari <b>3</b> Bidang Keahlian</p>
+                        <p class="mb-0">Menampilkan <b>{{ number_format($workers['data']->count()) }}</b> Worker dari <b>{{ $workers['services']->count() }}</b> Bidang Keahlian</p>
                     </div>
                     <div class="col-md-6 text-end">
-                        <p class="mb-0"><i class="bi bi-currency-dollar me-1"></i>Estimasi Biaya: <b>Rp. 50jt</b></p>
+                        <p class="mb-0"><i class="bi bi-currency-dollar me-1"></i>Estimasi Biaya: <b>{{ rpSingkat($workers['costs']) }}</b></p>
                     </div>
                 </div>
             </div>
@@ -70,7 +70,21 @@
 
             @if ($scan)
 
-            dapat
+            @foreach ($workers['services'] as $e)
+            <h6 class="text-darkblue mb-3">{{ $e['name'] }}</h6>
+
+            <div class="row mb-3">
+                @foreach ($workers['data'] as $worker)
+                @if ($worker->service_id == $e['id'])
+                <div class="col-md-3">
+                    <x-card-worker :worker=$worker />
+                </div>
+                @endif
+                @endforeach
+            </div>
+
+            @endforeach
+
             @else
                 <div class="row justify-content-center mb-2">
                     <div class="col-md-3 text-center">
@@ -80,18 +94,7 @@
             @endif
         </div>
 
-        {{-- @foreach ($services as $e)
-        <h6 class="text-darkblue mb-3">{{ $e->name }}</h6>
-
-        <div class="row mb-3">
-            @foreach ($workers as $worker)
-            <div class="col-md-3">
-                <x-card-worker :worker=$worker />
-            </div>
-            @endforeach
-        </div>
-
-        @endforeach --}}
+        
         
     </div>
 </div>

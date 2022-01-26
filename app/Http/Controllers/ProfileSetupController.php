@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\ProfileRequest;
 use App\Http\Traits\UploadAvatarTrait;
+use App\Services\QuickTeamService;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ProfileSetupController extends Controller
@@ -25,14 +26,15 @@ class ProfileSetupController extends Controller
         // if(!auth()->user()->role) {
         //     return redirect()->route('home');
         // }
+        
+        $obj = new QuickTeamService;
+        $workers = $obj->scan(true, 'Aplikasi', 'Small', 'Rookie');
 
-        // $workers = Worker::all();
-
-        // foreach ($workers as $d) {
-        //     $d->availability()->attach([rand(1, 5)]);
-        // }
-
+        foreach ($workers['services'] as $d) {
+            // echo $d['name'];
+        }
         // exit;
+        return response()->json($workers);
         
         return view('user.profile.setup');
     }

@@ -7,6 +7,7 @@ use App\Models\Service;
 use Livewire\Component;
 use App\Models\Availability;
 use GuzzleHttp\Psr7\Request;
+use App\Services\QuickTeamService;
 
 class QuickTeamIndex extends Component
 {
@@ -23,7 +24,8 @@ class QuickTeamIndex extends Component
         $var['projectcategory'] = ['Aplikasi', 'Youtube Content'];
 
         $var['services'] = Service::all();
-        $var['workers'] = Worker::actived()->latest()->limit(5)->get();
+        $obj = new QuickTeamService;
+        $var['workers'] = $obj->scan($this->scan, $this->category, $this->team, $this->ability);
 
         return view('livewire.quick-team-index', $var)->extends('layouts.user');
     }
