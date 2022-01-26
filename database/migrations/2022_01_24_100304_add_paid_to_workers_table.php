@@ -14,8 +14,9 @@ class AddPaidToWorkersTable extends Migration
     public function up()
     {
         Schema::table('workers', function (Blueprint $table) {
-            $table->integer('salary_start')->after('skills')->nullable();
-            $table->integer('salary_end')->after('salary_start')->nullable();
+            $table->unsignedInteger('service_id')->after('salary_end')->nullable();
+
+            $table->foreign('service_id')->references('id')->on('services')->constrained();
         });
     }
 

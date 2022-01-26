@@ -27,6 +27,7 @@ class ProfileRequest extends FormRequest
             'username' => 'required|unique:workers,id,' . auth()->id(),
             'name' => 'required',
             'expertise' => 'required',
+            'service_id' => 'required',
             'phone' => 'required|unique:workers,id,' . auth()->id(),
             'provinsi_id' => 'required',
             'kota_id' => 'required',
@@ -40,6 +41,7 @@ class ProfileRequest extends FormRequest
             'name.required' => 'A fullname is required',
             'provinsi_id.required' => 'A province is required',
             'kota_id.required' => 'A city is required',
+            'service_id.required' => 'A Specialist is required',
         ];
     }
 }

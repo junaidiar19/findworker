@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kota;
+use App\Models\User;
 use App\Models\Worker;
 use App\Models\Service;
 use App\Models\Provinsi;
@@ -24,7 +25,7 @@ class ProfileSetupController extends Controller
         // if(!auth()->user()->role) {
         //     return redirect()->route('home');
         // }
-
+        
         return view('user.profile.setup');
     }
 
@@ -38,6 +39,8 @@ class ProfileSetupController extends Controller
                 $var['kota'] = Kota::whereProvinsiId($user_provinsi)->get();
             }
         }
+
+        $var['services'] = Service::all();
 
         return view('user.profile.setup.worker-profile', $var);
     }
@@ -81,7 +84,6 @@ class ProfileSetupController extends Controller
         
         $var['experiences'] = Experience::all();
         $var['availabilities'] = Availability::all();
-        $var['services'] = Service::all();
 
         $worker = auth()->user()->worker;
         $var['aval'] = $worker->availability->pluck('id');

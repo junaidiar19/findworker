@@ -23,8 +23,8 @@
     <div class="col-md-7">
         <div class="form-group">
             <label for="">Username <span>*</span></label>
-            <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username', auth()->user()->username) }}" placeholder="Ex. johndoe" required
-                @if (auth()->user()->username)
+            <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username', $worker->username) }}" placeholder="Ex. johndoe" required
+                @if ($worker->username)
                     readonly
                 @endif
             >
@@ -46,9 +46,24 @@
         </div>
 
         <div class="form-group">
-            <label for="">Anda adalah seorang? <span>*</span></label>
+            <label for="">Expertise <span>*</span></label>
             <input type="text" class="form-control @error('expertise') is-invalid @enderror" name="expertise" value="{{ old('expertise', @$worker->expertise) }}" placeholder="Ex. Web Developer" required>
             @error('expertise')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
+
+        <div class="form-group">
+            <label for="">Spesialist <span>*</span></label>
+            <select class="form-control select2" name="service_id" required>
+                <option value="">-Silakan Pilih-</option>
+                @foreach ($services as $e)
+                    <option value="{{ $e->id }}" {{ (old('service_id', @$worker->service->name) == $e->id) ? 'selected' : '' }}>{{ $e->name }}</option>
+                @endforeach
+            </select>
+            @error('service_id')
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>
@@ -128,4 +143,9 @@
 @push('after-script')
     @include('partials.city-check')
     @include('partials.processing')
+    <script>
+        $(".select2").select2({
+            theme: "bootstrap-5",
+        });
+    </script>
 @endpush

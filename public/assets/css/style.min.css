@@ -532,6 +532,15 @@ input[type="radio"], input[type="checkbox"] {
   background-image: none;
 }
 
+.select2-container--bootstrap-5 .select2-dropdown .select2-search .select2-search__field:focus {
+  border: 1px solid var(--orange);
+  box-shadow: none;
+}
+
+.select2-container--bootstrap-5 .select2-dropdown .select2-results__options .select2-results__option.select2-results__option--selected, .select2-container--bootstrap-5 .select2-dropdown .select2-results__options .select2-results__option[aria-selected=true] {
+  background: var(--orange);
+}
+
 #progressbar {
     margin-bottom: 30px;
     overflow: hidden;

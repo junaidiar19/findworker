@@ -11,7 +11,7 @@ class Worker extends Model
     protected $fillable = [
         'username', 'expertise', 'portofolio_link', 'phone', 'provinsi_id', 'kota_id',
         'about', 'experience', 'skills', 'user_id', 'linkedin', 'facebook', 'instagram',
-        'twitter', 'status', 'actived_at', 'salary_start', 'salary_end'
+        'twitter', 'status', 'actived_at', 'salary_start', 'salary_end', 'service_id'
     ];
 
     protected $with = 'availability';
@@ -44,5 +44,10 @@ class Worker extends Model
     public function provinsi()
     {
         return $this->belongsTo(Provinsi::class);
+    }
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
     }
 }

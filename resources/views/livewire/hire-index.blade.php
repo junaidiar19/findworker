@@ -71,7 +71,7 @@
                 @if ($workers->total() > 0)
                 <div class="row mb-5">
                     @foreach ($workers as $worker)
-                    <div class="col-md-3">
+                    <div class="col-md-3 mb-3">
                         <x-card-worker :worker=$worker />
                     </div>
                     @endforeach
