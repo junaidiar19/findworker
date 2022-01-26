@@ -91,8 +91,9 @@
                 <div class="card border-0 rounded-md mb-3">
                     <div class="card-body">
                         <h6 class="mb-3">Worker Terkait</h6>
-
-                        <x-card-worker-sm />
+                        @foreach ($related as $worker)
+                        <x-card-worker-sm :worker=$worker />
+                        @endforeach
                     </div>
                 </div>
             </div>

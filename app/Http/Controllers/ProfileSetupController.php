@@ -25,6 +25,14 @@ class ProfileSetupController extends Controller
         // if(!auth()->user()->role) {
         //     return redirect()->route('home');
         // }
+
+        // $workers = Worker::all();
+
+        // foreach ($workers as $d) {
+        //     $d->availability()->attach([rand(1, 5)]);
+        // }
+
+        // exit;
         
         return view('user.profile.setup');
     }

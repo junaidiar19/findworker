@@ -1,5 +1,5 @@
 <a href="{{ route('worker.detail', $worker->username) }}">
-    <div class="card card-hover rounded-md border-0">
+    <div class="card shadow-md rounded-md border-0 mb-4">
         <div class="card-body text-center">
             <img src="{{ asset($worker->user->getAvatar) }}" class="avatar avatar-xl rounded-circle mb-2 border p-1" alt="">
             <br>

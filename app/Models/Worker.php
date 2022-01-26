@@ -26,6 +26,35 @@ class Worker extends Model
         $query->whereUsername($username)->actived();
     }
 
+    public function scopeRelated($query, $worker)
+    {
+        $query->with('user')->where('username', '!=', $worker->username)
+            ->where('service_id', $worker->service_id);
+    }
+
+    public function scopeFilter($query, $params)
+    {
+        $query->where(function($query) use ($params) {
+            if (@$params['q']) {
+                $query->where('expertise', 'LIKE',  '%'.$params['q'].'%');
+            }
+
+            if (@$params['location']) {
+                $query->orWhere('kota_id',  $params['location']);
+            }
+
+            if (@$params['experience']) {
+                $query->orWhere('experience',  $params['experience']);
+            }
+        });
+
+        if ($params['ready']) {
+            $query->whereHas('availability', function($query) use ($params) {
+                $query->where('id', $params['ready']);
+            });
+        }
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

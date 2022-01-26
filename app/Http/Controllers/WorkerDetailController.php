@@ -17,7 +17,8 @@ class WorkerDetailController extends Controller
     public function detail($username)
     {
         $worker = Worker::active($username)->firstOrFail();
+        $related = Worker::related($worker)->limit(6)->get();
 
-        return view('worker.worker-detail', compact('worker'));
+        return view('worker.worker-detail', compact('worker', 'related'));
     }
 }
